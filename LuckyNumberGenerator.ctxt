@@ -1,0 +1,10 @@
+#BlueJ class context
+comment0.params=
+comment0.target=LuckyNumberGenerator()
+comment1.params=
+comment1.target=int\ getLuckyNumberGenerator()
+comment2.params=
+comment2.target=int\ generateLuckyNumberGenerator()
+comment3.params=value
+comment3.target=void\ setLuckyNumberGenerator(int)
+numComments=4
