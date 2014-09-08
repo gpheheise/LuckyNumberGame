@@ -9,24 +9,25 @@ public class LuckyNumberGenerator
 {
     private int luckyNumberValue;
     
-    public LuckyNumberGenerator() // would love to call that LuckyNumber . . . cant i call the class LuckyNumber??
+    public LuckyNumberGenerator()
     {
-        luckyNumberValue =1;
+        luckyNumberValue = 10; // For development purposes set to constant
+//        this.luckyNumberValue = this.generateLuckyNumber();
     }
     
-    public int getLuckyNumberGenerator()
+    public int getLuckyNumber()
     {
         return luckyNumberValue;
     }
     
-    public int generateLuckyNumberGenerator()
+    public int generateLuckyNumber()
     {
         return luckyNumberValue = (int)(Math.random()*100) + 1;
     }
     
-    public void setLuckyNumberGenerator (int value)
-    {
-        luckyNumberValue = value;
-    }
+//    public void setLuckyNumber (int value)
+//    {
+//        luckyNumberValue = value;
+//    }
    
 }
