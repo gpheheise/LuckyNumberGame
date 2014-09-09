@@ -1,11 +1,4 @@
 
-/**
- * Write a description of class Game here.
- * 
- * @author (your name) 
- * @version (a version number or a date)
- */
-import java.util.List;
 import java.util.Scanner;
 
 public class Game
@@ -43,22 +36,27 @@ public class Game
             displayMenu();
         }
     }
+    
     private void println(String string) {
 		System.out.println(string);
 		
 	}
+    
 	private void displayHelp()
     {
         println("HELP MENU COMMING SOON");
     }
+	
     private void err()
     {
         System.out.println("\nPlease enter a number between 1 and 5");
     }
+    
     public Game()
     {
         
     }
+    
     public static void main (String[] args)
     { 
         try 
@@ -91,7 +89,7 @@ public class Game
         }
         else if (!settedUp)
         {
-        	println("Please set up the players first!");
+        	println("\nPlease set up the players first!");
         	setUpPlayer();
         }
         else if (choice == 3)
@@ -107,40 +105,77 @@ public class Game
     private void guessNumber() {
     	Scanner scanner = new Scanner(System.in);
     	
+    	print("\nEnter a number between 1-100 (up to 3 guesses) : ");
+    	
 		for (int i = 1; i <= 3; i++) {
-			print("Enter a number between 1-100 (up to 3 guesses) : ");
 			String sinput = scanner.next();
-			int iinput = Integer.parseInt(sinput);
+			int iinput;
 			
-			if (iinput < 1 || iinput > 100) return;
+			try {
+				iinput = Integer.parseInt(sinput);
+				if (iinput < 1 || iinput > 100) throw new Exception();
+			} catch (Exception e)
+			{
+				print("Sorry, only numbers between 1-100 are valid. Try again : ");
+				continue;
+			}
 			
 			if (iinput == luckyNumberGenerator.getLuckyNumber())
 			{
+				printLucky(iinput);
+				println("Congratulations : you WON $10...");
 				player.win();
 				break;
 			}
-			else if (i == 3 && (iinput == (luckyNumberGenerator.getLuckyNumber() - 5) || iinput == (luckyNumberGenerator.getLuckyNumber() + 5)))
-				player.consolation();
-			else if (iinput > luckyNumberGenerator.getLuckyNumber()) 
-			{}
-				// number too high
-			else if (iinput > luckyNumberGenerator.getLuckyNumber()) 
-			{}
-				// number too low
+			
+			if (i == 3)
+			{
+				printLucky(iinput);
+				
+				if (i == 3 && ((luckyNumberGenerator.getLuckyNumber() - 5) <= iinput && iinput < (luckyNumberGenerator.getLuckyNumber())))
+				{
+					println("Congratulations : you WON $5...");
+					player.consolation();
+				}
+				else
+				{
+					println("Sorry, better luck next time!");
+					player.loss();
+				}
+				
+				return;
+			}
+			
+			if (i < 3 && iinput > luckyNumberGenerator.getLuckyNumber()) 
+			{
+				print("Sorry, you need to go LOWER: ");
+			}
+			else if (i < 3 && iinput < luckyNumberGenerator.getLuckyNumber()) 
+			{
+				print("Sorry, you need to go HIGHER: ");
+			}
 		}
 	}
+    
+    private void printLucky(int iinput)
+    {
+    	println("\nLuck Number was :".concat(String.valueOf(luckyNumberGenerator.getLuckyNumber())).concat(", your final guess was : ").concat(String.valueOf(iinput)));
+    }
+    
 	private void print(String string) {
 		System.out.print(string);
 	}
+	
 	private void displayPlayerStatistics() {
 		int wins = player.getWins();
 		int loss = player.getLoss();
-		float percentage = (float) wins / (float) (wins + loss);
+		float percentage = ((float) wins / (float) (wins + loss) * 100);
 		int winnings = player.getWinnings();
 		
 		println("Player ".concat(player.getName()).concat(" has ").concat(String.valueOf(wins)).concat(" win(s) and ").concat(String.valueOf(loss)).concat(" loss(es) ==> Winning Percentage = ").concat(String.valueOf(percentage)).concat("%."));
 		println("Total Winnings: $".concat(String.valueOf(winnings)));
 	}
+	
 	public void start()
     {
     	while (true)
@@ -149,7 +184,6 @@ public class Game
     
     private void setUpPlayer ()
     {
-//    	System.out.println("Do you want to start a new game: Y / N");
     	System.out.print("Enter name for player: ");
         Scanner scanner = new Scanner(System.in);
         String response = scanner.next();

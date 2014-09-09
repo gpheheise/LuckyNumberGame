@@ -83,7 +83,7 @@ public class Player
     
     public void consolation()
     {
-    	this.raiseLoss(1);
+    	this.raiseWins(1);
     	this.raiseWinnings(5);
     }
      

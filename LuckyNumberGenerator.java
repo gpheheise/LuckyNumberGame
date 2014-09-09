@@ -11,8 +11,8 @@ public class LuckyNumberGenerator
     
     public LuckyNumberGenerator()
     {
-        luckyNumberValue = 10; // For development purposes set to constant
-//        this.luckyNumberValue = this.generateLuckyNumber();
+//        luckyNumberValue = 10; // For development purposes set to constant
+        this.luckyNumberValue = this.generateLuckyNumber();
     }
     
     public int getLuckyNumber()
@@ -24,10 +24,4 @@ public class LuckyNumberGenerator
     {
         return luckyNumberValue = (int)(Math.random()*100) + 1;
     }
-    
-//    public void setLuckyNumber (int value)
-//    {
-//        luckyNumberValue = value;
-//    }
-   
 }
