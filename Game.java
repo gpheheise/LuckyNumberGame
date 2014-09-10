@@ -104,6 +104,7 @@ public class Game
     
     private void guessNumber() {
     	Scanner scanner = new Scanner(System.in);
+    	luckyNumberGenerator.generateLuckyNumber();
     	
     	print("\nEnter a number between 1-100 (up to 3 guesses) : ");
     	

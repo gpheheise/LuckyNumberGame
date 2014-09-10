@@ -12,7 +12,7 @@ public class LuckyNumberGenerator
     public LuckyNumberGenerator()
     {
 //        luckyNumberValue = 10; // For development purposes set to constant
-        this.luckyNumberValue = this.generateLuckyNumber();
+        this.generateLuckyNumber();
     }
     
     public int getLuckyNumber()
